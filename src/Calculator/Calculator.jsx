@@ -60,12 +60,15 @@ export default function Calculator() {
     //   alert("s");
     //   return;
     // }
+    let sum=0;
     itemArray.forEach((item) => {
       let perTabPrice = (item.pkgMrp / item.pkgTab).toFixed(2);
       let custTabMULpertabPrice = perTabPrice * item.custTab;
       //   add price to total;
-      setTotal((p) => p + custTabMULpertabPrice);
+      sum+=custTabMULpertabPrice
+      
     });
+    setTotal(sum);
   };
 
   const [disValue, setDisValue] = useState({
