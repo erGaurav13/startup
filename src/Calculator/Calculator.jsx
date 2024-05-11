@@ -1,6 +1,8 @@
 import { Box, Button, Heading, Input, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { DeleteIcon, AddIcon } from "@chakra-ui/icons";
+ 
+ 
 export default function Calculator() {
   const [total, setTotal] = useState(0);
   const [data, setData] = useState([
@@ -32,8 +34,9 @@ export default function Calculator() {
         dis: "",
       },
     ]);
+   
   };
-
+ 
   const removeBy = (ind) => {
     let ar = data.filter((e, i) => i !== ind);
     setData([...ar]);
@@ -84,6 +87,7 @@ export default function Calculator() {
       newTotal: newTotal,
     });
   };
+ 
   return (
     <Box
       p="1"
@@ -100,10 +104,11 @@ export default function Calculator() {
           return (
             <Box
               w="100%"
-              //
+         
               color={"white"}
               gap={"8px"}
               border={"1px solid"}
+              borderBottom={'2px solid blue'}
               key={ind}
               p="1"
             >
@@ -112,6 +117,7 @@ export default function Calculator() {
                 value={e.name}
                 placeholder="Name"
                 onChange={(e) => handelChange(ind, "name", e.target.value)}
+                
               ></Input>
               <Box
                 w="100%"
@@ -171,7 +177,7 @@ export default function Calculator() {
                     colorScheme="red"
                     onClick={() => removeBy(ind)}
                   >
-                    <DeleteIcon />
+                    <DeleteIcon />{ind+1}
                   </Button>
                 </Box>
               </Box>
