@@ -39,20 +39,20 @@ export default function Calculator() {
     setData([...ar]);
   };
 
-//   function check(data) {
-//     console.log(data);
-//     if (!data || data === "") return false;
-//     return true;
-//   }
+  //   function check(data) {
+  //     console.log(data);
+  //     if (!data || data === "") return false;
+  //     return true;
+  //   }
 
-//   const checkKeyEmpty = (key) => {
-//     data.forEach((e) => {
-//       if (check(e.pkgMrp) && check(e.pkgTab) && check(e.custTab)) {
-//         return true;
-//       }
-//     });
-//     return false;
-//   };
+  //   const checkKeyEmpty = (key) => {
+  //     data.forEach((e) => {
+  //       if (check(e.pkgMrp) && check(e.pkgTab) && check(e.custTab)) {
+  //         return true;
+  //       }
+  //     });
+  //     return false;
+  //   };
 
   const generateBill = (itemArray) => {
     // let ans = checkKeyEmpty(itemArray);
@@ -87,8 +87,7 @@ export default function Calculator() {
       {data.map((e, ind) => {
         return (
           <Box
-            w="80%"
-            display={"flex"}
+            w="100%"
             backgroundColor={"blackAlpha.500"}
             color={"white"}
             gap={"8px"}
@@ -101,38 +100,58 @@ export default function Calculator() {
               placeholder="Name"
               onChange={(e) => handelChange(ind, "name", e.target.value)}
             ></Input>
-            <Input
-              type="number"
-              value={e.pkgMrp}
-              onChange={(e) => handelChange(ind, "pkgMrp", e.target.value)}
-              placeholder="PKG MRP"
-            ></Input>
-            <Input
-              type="number"
-              value={e.pkgTab}
-              onChange={(e) => handelChange(ind, "pkgTab", e.target.value)}
-              placeholder="PKG TAB"
-            ></Input>
-            <Input
-              type="number"
-              value={e.custTab}
-              onChange={(e) => handelChange(ind, "custTab", e.target.value)}
-              placeholder="CUST TAB "
-            ></Input>
-            <Input
+            <Box
+              w="100%"
+              display={"grid"}
+              gridTemplateColumns="repeat(3, 1fr)  0.1fr"
+              gap={"5px"}
+            >
+              <Box>
+                <Text>Strip Price</Text>
+                <Input
+                  type="number"
+                  value={e.pkgMrp}
+                  onChange={(e) => handelChange(ind, "pkgMrp", e.target.value)}
+                  placeholder="PKG MRP"
+                ></Input>
+              </Box>
+              <Box>
+                <Text>Total Tablet</Text>
+                <Input
+                  type="number"
+                  value={e.pkgTab}
+                  onChange={(e) => handelChange(ind, "pkgTab", e.target.value)}
+                  placeholder="PKG TAB"
+                ></Input>
+              </Box>
+
+              <Box>
+                <Text>Purchase Tablet</Text>
+                <Input
+                  type="number"
+                  value={e.custTab}
+                  onChange={(e) => handelChange(ind, "custTab", e.target.value)}
+                  placeholder="CUST TAB "
+                ></Input>
+              </Box>
+              {/* <Input
               type="number"
               value={e.dis}
               onChange={(e) => handelChange(ind, "dis", e.target.value)}
               placeholder="Discount"
-            ></Input>
-            <Button colorScheme="red" onClick={() => removeBy(ind)}>
-              X
-            </Button>
+            ></Input> */}
+              <Box   display={'grid'}   justifyContent={'center'} alignItems={'center'}>
+                <Text></Text>
+                <Button size={'sm'} colorScheme="red" onClick={() => removeBy(ind)}>
+                  X
+                </Button>
+              </Box>
+            </Box>
           </Box>
         );
       })}
       <Button onClick={addNewField} w="10%">
-        Add  
+        Add
       </Button>
       <Box>
         <Button w="20%" colorScheme="red" onClick={() => generateBill(data)}>
@@ -156,7 +175,7 @@ export default function Calculator() {
           >
             Calculate Discount
           </Button>
-          <Box backgroundColor={'black'}>
+          <Box backgroundColor={"black"}>
             <Text>Discount % : {disValue?.discountPercentage}% </Text>
             <Text>Discount Amount: ₹ {disValue?.discountPrice}</Text>
 
