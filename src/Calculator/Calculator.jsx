@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Input, Text, grid } from "@chakra-ui/react";
 import React, { useState } from "react";
 
 export default function Calculator() {
@@ -83,7 +83,7 @@ export default function Calculator() {
     });
   };
   return (
-    <Box height={"100vh"} width={"100%"} backgroundColor={"blue.200"}>
+    <Box p='1' height={"100vh"} width={"100%"} backgroundColor={"blue.200"}>
       {data.map((e, ind) => {
         return (
           <Box
@@ -93,6 +93,7 @@ export default function Calculator() {
             gap={"8px"}
             border={"1px solid"}
             key={ind}
+            p='1'
           >
             <Input
               type="text"
@@ -140,9 +141,17 @@ export default function Calculator() {
               onChange={(e) => handelChange(ind, "dis", e.target.value)}
               placeholder="Discount"
             ></Input> */}
-              <Box   display={'grid'}   justifyContent={'center'} alignItems={'center'}>
+              <Box
+                display={"grid"}
+                justifyContent={"center"}
+                alignItems={"center"}
+              >
                 <Text></Text>
-                <Button size={'sm'} colorScheme="red" onClick={() => removeBy(ind)}>
+                <Button
+                  size={"sm"}
+                  colorScheme="red"
+                  onClick={() => removeBy(ind)}
+                >
                   X
                 </Button>
               </Box>
@@ -150,36 +159,58 @@ export default function Calculator() {
           </Box>
         );
       })}
-      <Button onClick={addNewField} w="10%">
-        Add
-      </Button>
-      <Box>
-        <Button w="20%" colorScheme="red" onClick={() => generateBill(data)}>
-          Total Amount {total.toFixed(2)}
+      <Box display={"flex"} justifyContent={"space-between"}>
+        <Button colorScheme="pink" onClick={() => generateBill(data)}>
+          Bill ₹ {total.toFixed(2)}
         </Button>
-        <Box color={"white"} w="40%">
-          <Heading>Give Discount %</Heading>
-          <Input
-            onChange={(e) =>
-              setDisValue({
-                ...disValue,
-                discountPercentage: e.target.value,
-                discountPrice: 0,
-                newTotal: 0,
-              })
-            }
-          ></Input>
-          <Button
-            colorScheme="green"
-            onClick={() => handelDiscount(disValue?.discountPercentage)}
-          >
-            Calculate Discount
-          </Button>
-          <Box backgroundColor={"black"}>
-            <Text>Discount % : {disValue?.discountPercentage}% </Text>
-            <Text>Discount Amount: ₹ {disValue?.discountPrice}</Text>
+        <Button colorScheme="green" onClick={addNewField} w="10%">
+          Add
+        </Button>
+      </Box>
 
-            <Text>PayBale Amount: ₹ {disValue?.newTotal}</Text>
+      <Box>
+        <Box color={"white"} w="100%">
+          <Box>
+            <Text>Give Discount %</Text>
+            <Input
+              w="40%"
+              onChange={(e) =>
+                setDisValue({
+                  ...disValue,
+                  discountPercentage: e.target.value,
+                  discountPrice: 0,
+                  newTotal: 0,
+                })
+              }
+            ></Input>
+            <Button
+              colorScheme="green"
+              onClick={() => handelDiscount(disValue?.discountPercentage)}
+            >
+              Calculate Discount
+            </Button>
+          </Box>
+
+          <Box
+            backgroundColor={"#d53f8c"}
+            display={"grid"}
+            gridTemplateColumns="repeat(3, 1fr)"
+          >
+            <Box >
+              {" "}
+              <Text>Discount %</Text>{" "}
+              <Text> {disValue?.discountPercentage}% </Text>
+            </Box>
+            <Box>
+              {" "}
+              <Text>Discount Amount</Text>{" "}
+              <Text> ₹ {disValue?.discountPrice} </Text>
+            </Box>
+            <Box>
+              {" "}
+              <Text>PayBale Amount</Text>{" "}
+              <Text> ₹ {(disValue?.newTotal).toFixed(2)} </Text>
+            </Box>
           </Box>
         </Box>
       </Box>
