@@ -167,7 +167,7 @@ export default function Calculator() {
         <Button colorScheme="pink" onClick={() => generateBill(data)}>
           Bill ₹ {total.toFixed(2)}
         </Button>
-        <Button colorScheme="green" onClick={addNewField} w="10%">
+        <Button colorScheme="green" onClick={addNewField} w="15%">
           +Add
         </Button>
       </Box>
