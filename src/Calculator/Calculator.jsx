@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Input, Text, grid } from "@chakra-ui/react";
+import { Box, Button, Input, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 
 export default function Calculator() {
