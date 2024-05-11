@@ -163,7 +163,7 @@ export default function Calculator() {
           </Box>
         );
       })}
-      <Box display={"flex"} justifyContent={"space-between"}>
+      <Box display={"flex"} justifyContent={"space-between"} mt='2'>
         <Button colorScheme="pink" onClick={() => generateBill(data)}>
           Bill ₹ {total.toFixed(2)}
         </Button>
@@ -204,6 +204,9 @@ export default function Calculator() {
             backgroundColor={"#d53f8c"}
             display={"grid"}
             gridTemplateColumns="repeat(3, 1fr)"
+            mt='1'
+            p='1'
+            borderRadius={'md'}
           >
             <Box>
               {" "}
