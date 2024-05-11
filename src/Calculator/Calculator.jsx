@@ -39,20 +39,20 @@ export default function Calculator() {
     setData([...ar]);
   };
 
-  function check(data) {
-    console.log(data);
-    if (!data || data == "") return false;
-    return true;
-  }
+//   function check(data) {
+//     console.log(data);
+//     if (!data || data === "") return false;
+//     return true;
+//   }
 
-  const checkKeyEmpty = (key) => {
-    data.forEach((e) => {
-      if (check(e.pkgMrp) && check(e.pkgTab) && check(e.custTab)) {
-        return true;
-      }
-    });
-    return false;
-  };
+//   const checkKeyEmpty = (key) => {
+//     data.forEach((e) => {
+//       if (check(e.pkgMrp) && check(e.pkgTab) && check(e.custTab)) {
+//         return true;
+//       }
+//     });
+//     return false;
+//   };
 
   const generateBill = (itemArray) => {
     // let ans = checkKeyEmpty(itemArray);
