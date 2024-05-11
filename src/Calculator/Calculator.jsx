@@ -60,13 +60,12 @@ export default function Calculator() {
     //   alert("s");
     //   return;
     // }
-    let sum=0;
+    let sum = 0;
     itemArray.forEach((item) => {
       let perTabPrice = (item.pkgMrp / item.pkgTab).toFixed(2);
       let custTabMULpertabPrice = perTabPrice * item.custTab;
       //   add price to total;
-      sum+=custTabMULpertabPrice
-      
+      sum += custTabMULpertabPrice;
     });
     setTotal(sum);
   };
@@ -86,87 +85,100 @@ export default function Calculator() {
     });
   };
   return (
-    <Box p="1" backgroundColor={"black"} height={"100vh"} width={"100%"}>
+    <Box
+      p="1"
+      backgroundColor={"black"}
+      width={"100%"}
+      height={"100vh"}
+      overflowY={"scroll"}
+    >
       <Heading textAlign={"center"} color={"white"}>
         My Pharmacy
       </Heading>
-
-      {data.map((e, ind) => {
-        return (
-          <Box
-            w="100%"
-            //
-            color={"white"}
-            gap={"8px"}
-            border={"1px solid"}
-            key={ind}
-            p="1"
-          >
-            <Input
-              type="text"
-              value={e.name}
-              placeholder="Name"
-              onChange={(e) => handelChange(ind, "name", e.target.value)}
-            ></Input>
+      <Box overflowY={"scroll"} maxH={"500px"}>
+        {data.map((e, ind) => {
+          return (
             <Box
               w="100%"
-              display={"grid"}
-              gridTemplateColumns="repeat(3, 1fr)  0.1fr"
-              gap={"5px"}
+              //
+              color={"white"}
+              gap={"8px"}
+              border={"1px solid"}
+              key={ind}
+              p="1"
             >
-              <Box>
-                <Text>Strip Price</Text>
-                <Input
-                  type="number"
-                  value={e.pkgMrp}
-                  onChange={(e) => handelChange(ind, "pkgMrp", e.target.value)}
-                  placeholder="PKG MRP"
-                  textColor={"white"}
-                ></Input>
-              </Box>
-              <Box>
-                <Text>Total Tablet</Text>
-                <Input
-                  type="number"
-                  value={e.pkgTab}
-                  onChange={(e) => handelChange(ind, "pkgTab", e.target.value)}
-                  placeholder="PKG TAB"
-                ></Input>
-              </Box>
+              <Input
+                type="text"
+                value={e.name}
+                placeholder="Name"
+                onChange={(e) => handelChange(ind, "name", e.target.value)}
+              ></Input>
+              <Box
+                w="100%"
+                display={"grid"}
+                gridTemplateColumns="repeat(3, 1fr)  0.1fr"
+                gap={"5px"}
+              >
+                <Box>
+                  <Text>Strip Price</Text>
+                  <Input
+                    type="number"
+                    value={e.pkgMrp}
+                    onChange={(e) =>
+                      handelChange(ind, "pkgMrp", e.target.value)
+                    }
+                    placeholder="PKG MRP"
+                    textColor={"white"}
+                  ></Input>
+                </Box>
+                <Box>
+                  <Text>Total Tablet</Text>
+                  <Input
+                    type="number"
+                    value={e.pkgTab}
+                    onChange={(e) =>
+                      handelChange(ind, "pkgTab", e.target.value)
+                    }
+                    placeholder="PKG TAB"
+                  ></Input>
+                </Box>
 
-              <Box>
-                <Text>Buy Tablet</Text>
-                <Input
-                  type="number"
-                  value={e.custTab}
-                  onChange={(e) => handelChange(ind, "custTab", e.target.value)}
-                  placeholder="CUST TAB "
-                ></Input>
-              </Box>
-              {/* <Input
+                <Box>
+                  <Text>Buy Tablet</Text>
+                  <Input
+                    type="number"
+                    value={e.custTab}
+                    onChange={(e) =>
+                      handelChange(ind, "custTab", e.target.value)
+                    }
+                    placeholder="CUST TAB "
+                  ></Input>
+                </Box>
+                {/* <Input
               type="number"
               value={e.dis}
               onChange={(e) => handelChange(ind, "dis", e.target.value)}
               placeholder="Discount"
             ></Input> */}
-              <Box
-                display={"grid"}
-                justifyContent={"center"}
-                alignItems={"center"}
-              >
-                <Text></Text>
-                <Button
-                  size={"sm"}
-                  colorScheme="red"
-                  onClick={() => removeBy(ind)}
+                <Box
+                  display={"grid"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
                 >
-                  <DeleteIcon />
-                </Button>
+                  <Text></Text>
+                  <Button
+                    size={"sm"}
+                    colorScheme="red"
+                    onClick={() => removeBy(ind)}
+                  >
+                    <DeleteIcon />
+                  </Button>
+                </Box>
               </Box>
             </Box>
-          </Box>
-        );
-      })}
+          );
+        })}
+      </Box>
       <Box display={"flex"} justifyContent={"space-between"} mt="2">
         <Button colorScheme="pink" onClick={() => generateBill(data)}>
           Bill ₹ {total.toFixed(2)}
